@@ -1,0 +1,41 @@
+{
+  "name": "hotel-accounting",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/TackaIzHe/hotel-accounting#readme",
+  "bugs": {
+    "url": "https://github.com/TackaIzHe/hotel-accounting/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TackaIzHe/hotel-accounting.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "run": "ts-node src/index.ts",
+    "dev": "nodemon src/index.ts",
+    "ts-init": "tsc --init"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.0.1",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "nodemon": "^3.1.10",
+    "sqlite3": "^5.1.7",
+    "typeorm": "^0.3.25"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^24.0.8",
+    "@types/typescript": "^0.4.29",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}

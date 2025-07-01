@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/modelWindow.css">
+    <title>Document</title>
+    
+</head>
+<body>
+    <div id="header">
+        <button class="navBut">Клиенты</button>
+        <button class="navBut">Заказы</button>
+        <button class="navBut">Расходы</button>
+        <button class="navBut">Доходы</button>
+        <button class="navBut">Заполненость</button>
+    </div>
+    <div>
+        <button class="navBut">Добовить Клиента</button>
+        <table id="clientTable"></table>
+    </div>
+    <button id="openModalBtn">Открыть модальное окно</button>
+    
+    <div id="myModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+        <div class="modal-content">
+            <span class="close" aria-label="Закрыть модальное окно">&times;</span>
+            <h2 id="modalTitle">Заголовок модального окна</h2>
+            <p id="modalDesc">Это содержимое модального окна.</p>
+        </div>
+    </div>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/modelWindow.js"></script>
+</body>
+</html>

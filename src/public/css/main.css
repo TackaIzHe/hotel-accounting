@@ -1,0 +1,10 @@
+div#header{
+    border: 2px black solid; 
+    height: 50px; 
+    display:flex;
+    justify-content: left;
+}
+button.navBut{
+    font-size: 25px;
+    margin: 5px;
+}
