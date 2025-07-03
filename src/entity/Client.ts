@@ -18,6 +18,8 @@ export default class Client{
     @OneToMany(()=>Order,(order)=>order.client)
     orders!:Order[]
 
-    @Column()
+    @Column({
+        default:""
+    })
     description!:string
 }
