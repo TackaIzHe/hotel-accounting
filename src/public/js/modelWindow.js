@@ -12,6 +12,12 @@ btn.click("click", () => {
     else if(btn.text()== "Добовить Заказ"){
         openModalWindowAddOrder()
     }
+    else if(btn.text()== "Добовить Комнату"){
+        openModalWindowAddRoom()
+    }
+    else if(btn.text()== "Посмотреть таблицу заполнености"){
+        openModalWindowGetFilds()
+    }
     modal.css({"display":"block"});
     // Можно добавить фокус на окно для доступности
     closeBtn.focus();
@@ -71,6 +77,8 @@ function openModalWindowAddOrder(){
     const contentForm = content.append("<form id='clientAdd'></form>").children("form")
     contentForm.append("<label for='client'>Клиент</label><br>")
     contentForm.append("<input list='clientslist' id='client'/><br>")
+    contentForm.append("<label for='room'>Комната</label><br>")
+    contentForm.append("<input list='roomslist' id='room'/><br>")
     contentForm.append("<label for='payType'>Тип оплаты</label><br>")
     contentForm.append("<select id='payType'><option>Нал</option><option>Безнал</option></select><br>")
     contentForm.append("<label for='isPay'>Оплачено ли</label><br>")
@@ -86,5 +94,34 @@ function openModalWindowAddOrder(){
     contentForm.append("<button type='submit'>Добавить</button>")
     contentForm.submit(async(e)=>{
         addOrderAction(e)
+    })
+}
+
+function openModalWindowAddRoom(){
+    const content = $(".modal-content")
+    content.children("form").remove()
+    const contentForm = content.append("<form id='clientAdd'></form>").children("form")
+    contentForm.append("<label for='number'>Номер Комнаты</label><br>")
+    contentForm.append("<input id='number' type='number'/><br>")
+    contentForm.append("<label for='description'>Описание</label><br>")
+    contentForm.append("<input id='description'/><br>")
+    contentForm.append("<button type='submit'>Добавить</button>")
+    contentForm.submit(async(e)=>{
+        addRoomAction(e)
+    })
+}
+
+function openModalWindowGetFilds(){
+    const year = new Date().getFullYear()
+    const content = $(".modal-content")
+    content.children("form").remove()
+    const contentForm = content.append("<form id='clientAdd'></form>").children("form")
+    contentForm.append("<label for='mounth'>Месяц</label><br>")
+    contentForm.append("<input list='mounthslist' id='mounth'/><br>")
+    contentForm.append("<label for='year'>Год</label><br>")
+    contentForm.append(`<input value='${year}' type='number' id='year'/><br>`)
+    contentForm.append("<button type='submit'>Добавить</button>")
+    contentForm.submit(async(e)=>{
+        getZapTable(e)
     })
 }

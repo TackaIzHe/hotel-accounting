@@ -38,7 +38,7 @@ $("#rooms").click(async()=>{
     // if(div.css("display") == "none"){
         div.css({"display":"block"})
         
-        tablefilds("#clientTable",await getEntity("/orders"))
+        tablefilds("#clientTable",await getEntity("/rooms"))
     // }
     
 })
@@ -82,8 +82,7 @@ $("#filds").click(async()=>{
     // }
     // if(div.css("display") == "none"){
         div.css({"display":"block"})
-        
-        tablefilds("#clientTable",await getEntity("/orders"))
+        tableZapFilds("#clientTable",await getEntity("/rooms"),-1)
     // }
     
 })

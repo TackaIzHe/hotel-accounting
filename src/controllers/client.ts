@@ -28,7 +28,17 @@ export default class {
 
     static async get(req: Request, res: Response, next: NextFunction) {
         try {
-
+            const {id} = req.params
+            const parseId = Number.parseInt(id)
+            if(!id || isNaN(parseId)){
+                return next(ApiError.badData())
+            }
+            const clientRepo = DbContex.getRepository(Client)
+            const findClient = await clientRepo.findOne({where:{id:parseId}})
+            if(!findClient){
+                return next(ApiError.notFound())
+            }
+            res.status(200).json(findClient)
         } catch (err) {
             console.log(err)
             return next(ApiError.internalServerError())

@@ -9,6 +9,12 @@ export default class ApiError extends Error{
     static badData(){
         return new ApiError(404,"Не коректные данные");
     }
+    static notFound(){
+        return new ApiError(404,"Не найдено");
+    }
+    static haveDate(){
+        return new ApiError(404,"Дата занята");
+    }
     static internalServerError(){
         return new ApiError(500,"Ошибка сервера");
     }

@@ -36,7 +36,7 @@ export default class {
     static async post(req: Request, res: Response, next: NextFunction) {
         try {
             const { number, description } = req.body
-            if (!number || isNaN(number) || !description) {
+            if (!number || isNaN(number)) {
                 return next(ApiError.badData())
             }
             const roomRepo = DbContex.getRepository(Room)
