@@ -1,23 +1,21 @@
 import { NextFunction, Request, Response } from "express";
 import ApiError from "../errors/ApiError";
 import { DbContex } from "../db/db";
-import Client from "../entity/Client";
+import Room from "../entity/Room"
 
 export default class {
     static async getAll(req: Request, res: Response, next: NextFunction) {
         try {
-            const clietRepo = DbContex.getRepository(Client)
-            const clients = await clietRepo.find({
+            const roomRepo = DbContex.getRepository(Room)
+            const rooms = await roomRepo.find({
                 relations:['orders']
             });
-            return res.status(200).json(clients.map((x) => {
+            return res.status(200).json(rooms.map((x) => {
                 return ({
                     Номер:x.id,
-                    ФИО:x.FIO,
-                    Номер_телефона:x.tel,
-                    Город:x.city,
-                    Заказы:x.orders.map((x)=>{return x.id}),
-                    Описание:x.description
+                    Номер_Комнаты:x.number,
+                    Описание:x.description,
+                    Заказы:x.orders.map((x)=>{return x.id})
                 })
             }))
         } catch (err) {
@@ -37,21 +35,19 @@ export default class {
 
     static async post(req: Request, res: Response, next: NextFunction) {
         try {
-            const { FIO, tel, city, description } = req.body
-            if (!FIO || !tel || !city ) {
+            const { number, description } = req.body
+            if (!number || isNaN(number) || !description) {
                 return next(ApiError.badData())
             }
-            const clietRepo = DbContex.getRepository(Client)
-            const newClient = clietRepo.create(
+            const roomRepo = DbContex.getRepository(Room)
+            const newRoom = roomRepo.create(
                 {
-                    FIO: FIO,
-                    tel: tel,
-                    city: city,
-                    description: description
+                    number:number,
+                    description:description
                 }
             )
-            await clietRepo.save(newClient);
-            return res.status(201).json("Клиент добавлен");
+            await roomRepo.save(newRoom);
+            return res.status(201).json("Комната добавлена");
         } catch (err) {
             console.log(err)
             return next(ApiError.internalServerError())

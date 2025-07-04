@@ -6,7 +6,12 @@ const errorText = $(".modal-content #error")
 
 // Открыть модальное окно при клике на кнопку
 btn.click("click", () => {
-    openModalWindowAddClient()
+    if(btn.text()== "Добовить Клиента"){
+        openModalWindowAddClient()
+    }
+    else if(btn.text()== "Добовить Заказ"){
+        openModalWindowAddOrder()
+    }
     modal.css({"display":"block"});
     // Можно добавить фокус на окно для доступности
     closeBtn.focus();
@@ -45,8 +50,6 @@ function closeText(sucText, errorText){
 function openModalWindowAddClient(){
     const content = $(".modal-content")
     content.children("form").remove()
-    const title = content.children("#modalTitle")
-    title.text("Добавление клиента")
     const contentForm = content.append("<form id='clientAdd'></form>").children("form")
     contentForm.append("<label for='fio'>ФИО</label><br>")
     contentForm.append("<input id='fio'/><br>")
@@ -59,5 +62,29 @@ function openModalWindowAddClient(){
     contentForm.append("<button type='submit'>Добавить</button>")
     contentForm.submit(async(e)=>{
         addClientAction(e)
+    })
+}
+
+function openModalWindowAddOrder(){
+    const content = $(".modal-content")
+    content.children("form").remove()
+    const contentForm = content.append("<form id='clientAdd'></form>").children("form")
+    contentForm.append("<label for='client'>Клиент</label><br>")
+    contentForm.append("<input list='clientslist' id='client'/><br>")
+    contentForm.append("<label for='payType'>Тип оплаты</label><br>")
+    contentForm.append("<select id='payType'><option>Нал</option><option>Безнал</option></select><br>")
+    contentForm.append("<label for='isPay'>Оплачено ли</label><br>")
+    contentForm.append("<input type='checkbox' id='isPay'/><br>")
+    contentForm.append("<label for='paySum'>Сумма</label><br>")
+    contentForm.append("<input id='paySum' type='number'/><br>")
+    contentForm.append("<label for='startDate'>Начальная дата</label><br>")
+    contentForm.append("<input id='startDate' type='date'/><br>")
+    contentForm.append("<label for='endDate'>Конечная дата</label><br>")
+    contentForm.append("<input id='endDate' type='date'/><br>")
+    contentForm.append("<label for='description'>Описание</label><br>")
+    contentForm.append("<input id='description'/><br>")
+    contentForm.append("<button type='submit'>Добавить</button>")
+    contentForm.submit(async(e)=>{
+        addOrderAction(e)
     })
 }

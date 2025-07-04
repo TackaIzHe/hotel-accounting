@@ -1,6 +1,7 @@
-import {Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn} from "typeorm"
+import {Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn} from "typeorm"
 import Client from "./Client"
 import DateOrder from "./DateOrder"
+import Room from "./Room"
 
 @Entity()
 export default class Order{
@@ -18,13 +19,19 @@ export default class Order{
     @Column()
     paySum!:number
 
-    @OneToOne(()=>DateOrder,(dateOrder)=>dateOrder.order)
+    @ManyToOne(()=>Room,(room)=>room.orders)
+    roomNumber!:Room
+
+    @OneToOne(()=>DateOrder,(datePer)=>datePer.order)
+    @JoinColumn()
     datePer!:DateOrder
 
     @ManyToOne(()=>Client,(client)=>client.orders)
     client!:Client
 
-    @Column()
+    @Column({
+        default:" "
+    })
     description!:string
 
 }

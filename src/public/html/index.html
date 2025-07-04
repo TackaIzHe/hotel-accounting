@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,18 +9,19 @@
     <link rel="stylesheet" href="../css/table.css">
     <link rel="stylesheet" href="../css/form.css">
     <title>Document</title>
-    
+    <datalist id="clientslist"></datalist>
 </head>
 <body>
     <div id="header">
-        <button id="clients" class="navBut">Клиенты</button>
-        <button class="navBut">Заказы</button>
-        <button class="navBut">Расходы</button>
-        <button class="navBut">Доходы</button>
-        <button class="navBut">Заполненость</button>
+        <button name="clients" id="clients" class="navBut">Клиенты</button>
+        <button name="orders" id="orders" class="navBut">Заказы</button>
+        <button name="rooms" id="rooms" class="navBut">Комнаты</button>
+        <button name="expenses" id="expenses" class="navBut">Расходы</button>
+        <button name="incomes" id="incomes" class="navBut">Доходы</button>
+        <button name="filds" id="filds" class="navBut">Заполненость</button>
     </div>
     <div id="clientDiv" style="display: none;">
-        <button id="openModalBtn" class="navBut">Добовить Клиента</button>
+        <button id="openModalBtn" class="navBut"></button>
         <table id="clientTable"></table>
     </div>
     
@@ -29,23 +30,15 @@
             <span class="close" aria-label="Закрыть модальное окно">&times;</span>
             <h2 id="modalTitle">Добавление клиента</h2>
             <form id="clientAdd">
-                <label for="fio">ФИО</label><br>
-                <input id="fio"/><br>
-
-                <label for="tel">Номер телефона</label><br>
-                <input id="tel"/><br>
                 
-                <label for="city">Город</label><br>
-                <input id="city"/><br>
-                
-                <label for="description">Описание</label><br>
-                <input id="description"/><br>
-                <button type="submit">Добавить</button>
             </form>
             <p id="suc" style="display: none; color: green;">Успех</p>
             <p id="error" style="display: none; color: red;">Пожалуйста заполните все поля</p>
         </div>
     </div>
+    
+    
+    <script src="../js/dataList.js"></script>
     <script src="../js/tableFilds.js"></script>
     <script src="../js/fetchScript.js"></script>
     <script src="../js/modelWindow.js"></script>

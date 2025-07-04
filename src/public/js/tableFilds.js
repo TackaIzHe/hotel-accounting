@@ -1,5 +1,6 @@
 function tablefilds(tableId, body){
     $(tableId).children().remove()
+    console.log(body)
     const thead = $(tableId).append("<thead></thead>").children("thead");
         const tr = thead.append("<tr></tr>").children("tr")
         for(let x in body.at()){
