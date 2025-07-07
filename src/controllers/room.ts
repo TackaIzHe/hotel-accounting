@@ -23,10 +23,31 @@ export default class {
             return next(ApiError.internalServerError())
         }
     }
+    static async getAllOrders(req: Request, res: Response, next: NextFunction) {
+        try {
+            const {id} = req.params
+            const parseId = Number.parseInt(id)
+            if(!id || isNaN(parseId)){
+                return next(ApiError.badData())
+            }
+            const roomRepo = DbContex.getRepository(Room)
+            const room = await roomRepo.findOne({
+                where:{id:parseId},
+                relations:['orders','orders.datePer']
+            });
+            if(!room){
+                return next(ApiError.notFound())
+            }
+            return res.status(200).json(room.orders.map((x) => {return x}))
+        } catch (err) {
+            console.log(err)
+            return next(ApiError.internalServerError())
+        }
+    }
 
     static async get(req: Request, res: Response, next: NextFunction) {
         try {
-
+            return res.status(200).json(1)
         } catch (err) {
             console.log(err)
             return next(ApiError.internalServerError())

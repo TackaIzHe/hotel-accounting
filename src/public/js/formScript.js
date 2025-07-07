@@ -129,22 +129,14 @@ async function getZapTable(e){
         $(".modal-content #error").css({"display":"block"})
         return
     }
-    const res = await httpMet.bodyFetch("/rooms")//,"POST"//,JSON.stringify(
-    //     {
-    //         // number:number.val(),
-    //         // description:description.val()
-    //     }
-    // ))
+    const res = await httpMet.bodyFetch("/rooms")
     if(res.ok){
-        // number.val("")
-        // description.val("")
         $(".modal-content #error").css({"display":"none"})
         $(".modal-content #suc").css({"display":"block"})
         const parseYear = Number.parseInt(year.val())
         const getCountDay = 
         (new Date(parseYear,mounths[mounth.val()]+1,1).getTime()- new Date(parseYear,mounths[mounth.val()],0).getTime())/1000/60/60/24-1
-        console.log(parseYear)
-        tableZapFilds("#clientTable",await getEntity("/rooms"), getCountDay)
+        tableZapFilds("#clientTable",await getEntity("/rooms"), getCountDay, parseYear, mounths[mounth.val()])
     }
     else{
         $(".modal-content #suc").css({"display":"none"})

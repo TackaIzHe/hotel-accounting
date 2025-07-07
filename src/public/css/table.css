@@ -17,3 +17,6 @@ th {
 tbody tr:hover {
       background-color: #e0e0e0;
     }
+td#day{
+  background-color: red;
+}

@@ -4,7 +4,6 @@ import { DbContex } from "../db/db";
 import Order from "../entity/Order";
 import DateOrder from "../entity/DateOrder";
 import Room from "../entity/Room";
-import { Between } from "typeorm";
 
 export default class {
     static async getAll(req: Request, res: Response, next: NextFunction) {
@@ -33,7 +32,17 @@ export default class {
 
     static async get(req: Request, res: Response, next: NextFunction) {
         try {
-
+            const {id} = req.params;
+            const parseId = Number.parseInt(id)
+            if(!id || isNaN(parseId)){
+                return next(ApiError.badData())
+            }
+            const orderRepo = DbContex.getRepository(Order)
+            const findOrder = await orderRepo.findOne({where:{id:parseId},relations:['datePer']})
+            if(!findOrder){
+                return next(ApiError.notFound())
+            }
+            res.status(200).json(findOrder)
         } catch (err) {
             console.log(err)
             return next(ApiError.internalServerError())
@@ -52,7 +61,8 @@ export default class {
                 isNaN(id) ||
                 isNaN(paySum) ||
                 !room ||
-                isNaN(room)
+                isNaN(room) ||
+                startDate>endDate
             ) {
                 return next(ApiError.badData())
             }
@@ -72,10 +82,12 @@ export default class {
                 }
                 if((new Date(date.datePer.startDate)<= new Date(startDate) && 
                 new Date(date.datePer.endDate)>= new Date(startDate)) ||
-                new Date(date.datePer.startDate)<= new Date(endDate) && 
-                new Date(date.datePer.endDate)>= new Date(endDate)
+                (new Date(date.datePer.startDate)<= new Date(endDate) && 
+                new Date(date.datePer.endDate)>= new Date(endDate)) ||
+                (new Date(date.datePer.startDate)>= new Date(startDate) && 
+                new Date(date.datePer.endDate)<= new Date(endDate))
                 ){
-                    return next(ApiError.badData())
+                    return next(ApiError.haveDate())
                 }
             }
             const newOrder = orderRepo.create(

@@ -3,6 +3,9 @@ import room from "../controllers/room";
 
 const router = Router()
 
+router.get("/orders/:id", async(req ,res ,next)=>{
+    await room.getAllOrders(req, res, next);
+})
 router.get("/:id", async(req ,res ,next)=>{
     await room.get(req, res, next);
 })
