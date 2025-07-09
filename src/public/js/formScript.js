@@ -119,6 +119,70 @@ async function addRoomAction(e){
     }
 }
 
+async function addExpenseAction(e){
+    e.preventDefault();
+    const form = $("#clientAdd");
+    const type = form.children("#type")
+    const sum = form.children("#sum")
+    const description = form.children("#description")
+    if(!type.val() || !sum.val()){
+        $(".modal-content #suc").css({"display":"none"})
+        $(".modal-content #error").css({"display":"block"})
+        return
+    }
+    const res = await httpMet.bodyFetch("/expenses","POST",JSON.stringify(
+        {
+            type:type.val(),
+            sum:sum.val(),
+            description:description.val()
+        }
+    ))
+    if(res.ok){
+        type.val("")
+        sum.val("")
+        description.val("")
+        $(".modal-content #error").css({"display":"none"})
+        $(".modal-content #suc").css({"display":"block"})
+        tablefilds("#clientTable",await getEntity("/expenses"))
+    }
+    else{
+        $(".modal-content #suc").css({"display":"none"})
+        $(".modal-content #error").css({"display":"block"})
+    }
+}
+
+async function addIncomeAction(e){
+    e.preventDefault();
+    const form = $("#clientAdd");
+    const type = form.children("#type")
+    const sum = form.children("#sum")
+    const description = form.children("#description")
+    if(!type.val() || !sum.val()){
+        $(".modal-content #suc").css({"display":"none"})
+        $(".modal-content #error").css({"display":"block"})
+        return
+    }
+    const res = await httpMet.bodyFetch("/incomes","POST",JSON.stringify(
+        {
+            type:type.val(),
+            sum:sum.val(),
+            description:description.val()
+        }
+    ))
+    if(res.ok){
+        type.val("")
+        sum.val("")
+        description.val("")
+        $(".modal-content #error").css({"display":"none"})
+        $(".modal-content #suc").css({"display":"block"})
+        tablefilds("#clientTable",await getEntity("/incomes"))
+    }
+    else{
+        $(".modal-content #suc").css({"display":"none"})
+        $(".modal-content #error").css({"display":"block"})
+    }
+}
+
 async function getZapTable(e){
     e.preventDefault();
     const form = $("#clientAdd");

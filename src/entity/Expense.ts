@@ -11,7 +11,9 @@ export default class Expenses{ //расходы
     @Column()
     sum!:number
 
-    @Column()
+    @Column({
+        default:" "
+    })
     description!:string
 
 

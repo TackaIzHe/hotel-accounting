@@ -15,11 +15,17 @@ btn.click("click", () => {
     else if(btn.text()== "Добовить Комнату"){
         openModalWindowAddRoom()
     }
+    else if(btn.text()== "Добовить Расходы"){
+        openModalWindowAddExpenses()
+    }
+    else if(btn.text()== "Добовить Доход"){
+        openModalWindowAddIncome()
+    }
     else if(btn.text()== "Посмотреть таблицу заполнености"){
         openModalWindowGetFilds()
     }
     modal.css({"display":"block"});
-    // Можно добавить фокус на окно для доступности
+    // Можно добавить фокус на окно для доступности 
     closeBtn.focus();
 });
 
@@ -108,6 +114,38 @@ function openModalWindowAddRoom(){
     contentForm.append("<button type='submit'>Добавить</button>")
     contentForm.submit(async(e)=>{
         addRoomAction(e)
+    })
+}
+
+function openModalWindowAddExpenses(){
+    const content = $(".modal-content")
+    content.children("form").remove()
+    const contentForm = content.append("<form id='clientAdd'></form>").children("form")
+    contentForm.append("<label for='type'>Тип расходов</label><br>")
+    contentForm.append("<input id='type'/><br>")
+    contentForm.append("<label for='sum'>Сумма</label><br>")
+    contentForm.append("<input id='sum' type='number'/><br>")
+    contentForm.append("<label for='description'>Описание</label><br>")
+    contentForm.append("<input id='description'/><br>")
+    contentForm.append("<button type='submit'>Добавить</button>")
+    contentForm.submit(async(e)=>{
+        addExpenseAction(e)
+    })
+}
+
+function openModalWindowAddIncome(){
+    const content = $(".modal-content")
+    content.children("form").remove()
+    const contentForm = content.append("<form id='clientAdd'></form>").children("form")
+    contentForm.append("<label for='type'>Тип расходов</label><br>")
+    contentForm.append("<input id='type'/><br>")
+    contentForm.append("<label for='sum'>Сумма</label><br>")
+    contentForm.append("<input id='sum' type='number'/><br>")
+    contentForm.append("<label for='description'>Описание</label><br>")
+    contentForm.append("<input id='description'/><br>")
+    contentForm.append("<button type='submit'>Добавить</button>")
+    contentForm.submit(async(e)=>{
+        addIncomeAction(e)
     })
 }
 

@@ -53,7 +53,7 @@ $("#expenses").click(async()=>{
     // if(div.css("display") == "none"){
         div.css({"display":"block"})
         
-        tablefilds("#clientTable",await getEntity("/orders"))
+        tablefilds("#clientTable",await getEntity("/expenses"))
     // }
     
 })
@@ -61,14 +61,14 @@ $("#expenses").click(async()=>{
 $("#incomes").click(async()=>{
     const div = $("#clientDiv");
     const addBut = $("#openModalBtn")
-    addBut.text("Добовить Доходы")
+    addBut.text("Добовить Доход")
     // if(div.css("display") == "block"){
     //     div.css({"display":"none"})
     // }
     // if(div.css("display") == "none"){
         div.css({"display":"block"})
         
-        tablefilds("#clientTable",await getEntity("/orders"))
+        tablefilds("#clientTable",await getEntity("/incomes"))
     // }
     
 })
