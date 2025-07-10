@@ -38,7 +38,7 @@ export default class {
                 return next(ApiError.badData())
             }
             const orderRepo = DbContex.getRepository(Order)
-            const findOrder = await orderRepo.findOne({where:{id:parseId},relations:['datePer']})
+            const findOrder = await orderRepo.findOne({where:{id:parseId},relations:['datePer','client','roomNumber']})
             if(!findOrder){
                 return next(ApiError.notFound())
             }

@@ -163,3 +163,27 @@ function openModalWindowGetFilds(){
         getZapTable(e)
     })
 }
+
+function openModalWindowOrderForFildSell(res){
+    const content = $(".modal-content")
+    content.children("form").remove()
+    const contentForm = content.append("<form id='clientAdd'></form>").children("form")
+    contentForm.append("<h3>Номер</h3>")
+    contentForm.append(`<p>${res.id}</p>`)
+    contentForm.append("<h3>Тип оплаты</h3>")
+    contentForm.append(`<p>${res.payType}</p>`)
+    contentForm.append("<h3>Статус оплаты</h3>")
+    contentForm.append(`<p>${res.isPay}</p>`)
+    contentForm.append("<h3>Сумма</h3>")
+    contentForm.append(`<p>${res.paySum}</p>`)
+    contentForm.append("<h3>Номер комнаты</h3>")
+    contentForm.append(`<p>${res.roomNumber.number}</p>`)
+    contentForm.append("<h3>Дата</h3>")
+    contentForm.append(`<p>${res.datePer.startDate} - ${res.datePer.endDate}</p>`)
+    contentForm.append("<h3>Клиент</h3>")
+    contentForm.append(`<p>${res.client.FIO}</p>`)
+    contentForm.append("<h3>Описание</h3>")
+    contentForm.append(`<p>${res.description}</p>`)
+    modal.css({"display":"block"}); 
+    closeBtn.focus();
+}

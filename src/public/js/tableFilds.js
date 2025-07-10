@@ -42,7 +42,9 @@ async function tableZapFilds(tableId, body, dateLenght, year, mounth) {
                         for(let count = 1;count<= $(trBody).children().length;count++){
                             const countDay = new Date(year,mounth,count);
                             if (parseStartDay <= countDay && parseEndDay >= countDay){
-                                $($(trBody).children()[count]).attr({"id":"day"}).text(parseBody.id)
+                                const fildSell = $($(trBody).children()[count])
+                                fildSell.attr({"id":"day"}).text(parseBody.id)
+                                fildSell.click(async()=>orderSell(parseBody.id))
                                 continue
                             }
                             if(count >= parseEndDay){

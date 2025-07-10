@@ -87,6 +87,12 @@ $("#filds").click(async()=>{
     
 })
 
+async function orderSell(id){
+    console.log(1)
+    const res = await getEntity(`/orders/${id}`)
+    openModalWindowOrderForFildSell(res)
+}
+
 async function getEntity(curl){
     const res = await (await httpMet.bodyFetch(curl)).text()
     const body = JSON.parse(res)
