@@ -1,5 +1,7 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import Order from "./Order";
+import User from "./User";
+import EventRoom from "./EventRoom";
 
 @Entity()
 export default class{
@@ -16,4 +18,7 @@ export default class{
 
     @OneToMany(()=>Order,(order)=>order.roomNumber)
     orders!:Order[]
+
+    @OneToMany(()=>EventRoom,(event)=>event.room)
+    events!:EventRoom[]
 }

@@ -2,6 +2,8 @@ import {Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGener
 import Client from "./Client"
 import DateOrder from "./DateOrder"
 import Room from "./Room"
+import User from "./User"
+import EventOrder from "./EventOrder"
 
 @Entity()
 export default class Order{
@@ -33,5 +35,8 @@ export default class Order{
         default:" "
     })
     description!:string
+
+    @OneToMany(()=>EventOrder,(event)=>event.order)
+    events!:EventOrder[]
 
 }

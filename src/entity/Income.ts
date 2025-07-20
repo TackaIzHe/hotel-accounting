@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import User from "./User";
+import EventIncome from "./EventIncome";
 
 @Entity()
 export default class Income{
@@ -14,5 +16,6 @@ export default class Income{
     @Column()
     description!:string
 
-
+    @ManyToOne(()=>EventIncome,(event)=>event.income)
+    events!:EventIncome[]
 }

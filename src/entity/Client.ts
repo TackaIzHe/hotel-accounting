@@ -1,5 +1,7 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import Order from "./Order";
+import User from "./User";
+import EventClient from "./EventClient";
 
 @Entity()
 export default class Client{
@@ -22,4 +24,7 @@ export default class Client{
         default:""
     })
     description!:string
+
+    @OneToMany(()=>EventClient,(event)=>event.client)
+    events!:EventClient[]
 }

@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import User from "./User";
+import EventExpense from "./EventExpense";
 
 @Entity()
 export default class Expenses{ //расходы
@@ -16,5 +18,6 @@ export default class Expenses{ //расходы
     })
     description!:string
 
-
+    @OneToMany(()=>EventExpense,(event)=>event.expense)
+    events!:EventExpense[]
 }
