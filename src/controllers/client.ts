@@ -6,6 +6,7 @@ import Client from "../entity/Client";
 export default class {
     static async getAll(req: Request, res: Response, next: NextFunction) {
         try {
+            next("as");
             const clietRepo = DbContex.getRepository(Client)
             const clients = await clietRepo.find({
                 relations:['orders']

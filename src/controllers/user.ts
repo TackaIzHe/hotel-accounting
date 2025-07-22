@@ -12,7 +12,7 @@ export default class user {
     }
     static async reg(req: Request, res: Response, next: NextFunction) {
         try {
-
+            //доступно админам
         } catch (err) {
             console.log(err)
             return next(ApiError.internalServerError())
@@ -27,14 +27,6 @@ export default class user {
         }
     }
     static async del(req: Request, res: Response, next: NextFunction) {
-        try {
-
-        } catch (err) {
-            console.log(err)
-            return next(ApiError.internalServerError())
-        }
-    }
-    static async log(req: Request, res: Response, next: NextFunction) {
         try {
 
         } catch (err) {

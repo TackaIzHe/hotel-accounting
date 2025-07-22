@@ -18,4 +18,7 @@ export default class ApiError extends Error{
     static internalServerError(){
         return new ApiError(500,"Ошибка сервера");
     }
+    static forbidden(){
+        return new ApiError(403,"Отказано в доступе");
+    }
 }
